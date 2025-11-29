@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { GlassCard } from '@/components/ui/GlassCard';
-import { cases, Case, RiskLevel } from '@/lib/mockData';
+import { Case, RiskLevel } from '@/lib/mockData';
 import { RiskBadge } from '@/components/RiskBadge';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -21,12 +21,14 @@ import {
 } from '@/components/ui/select';
 import { Users, AlertTriangle, Clock, Search, ArrowUpDown, Calendar, Phone, CheckCircle } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useCases } from '@/contexts/CasesContext';
 
 interface DashboardProps {
   onSelectCase: (caseId: string) => void;
 }
 
 export function Dashboard({ onSelectCase }: DashboardProps) {
+  const { cases } = useCases();
   const [filterRisk, setFilterRisk] = useState<string>('All');
   const [searchQuery, setSearchQuery] = useState('');
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc');

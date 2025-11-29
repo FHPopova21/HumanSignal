@@ -1,18 +1,17 @@
-import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { GlassCard } from '@/components/ui/GlassCard';
 import { Button } from '@/components/ui/button';
 import { RiskBadge } from '@/components/RiskBadge';
-import { cases } from '@/lib/mockData';
 import { Calendar, Phone, CheckCircle, ArrowRight, AlertTriangle, Clock, Plus } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useCases } from '@/contexts/CasesContext';
 
 interface ActionCenterProps {
-  onNavigate: (screen: string) => void;
   onSelectCase: (caseId: string) => void;
 }
 
-export function ActionCenter({ onNavigate, onSelectCase }: ActionCenterProps) {
-  
+export function ActionCenter({ onSelectCase }: ActionCenterProps) {
+  const { cases } = useCases();
   const highRiskCases = cases.filter(c => c.risk === 'High');
 
   return (

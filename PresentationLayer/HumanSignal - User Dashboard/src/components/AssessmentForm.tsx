@@ -1,6 +1,5 @@
-import React from 'react';
-import { useForm } from 'react-hook-form@7.55.0';
-import { GlassCard } from '@/components/ui/GlassCard';
+import { useNavigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -15,11 +14,11 @@ import { Slider } from '@/components/ui/slider';
 import { ArrowLeft } from 'lucide-react';
 
 interface AssessmentFormProps {
-  onCancel: () => void;
   onSubmit: (data: any) => void;
 }
 
-export function AssessmentForm({ onCancel, onSubmit }: AssessmentFormProps) {
+export function AssessmentForm({ onSubmit }: AssessmentFormProps) {
+  const navigate = useNavigate();
   const { register, handleSubmit, setValue, watch } = useForm();
   const caspScore = watch("casp", 19); // Default middle value
 
@@ -32,7 +31,7 @@ export function AssessmentForm({ onCancel, onSubmit }: AssessmentFormProps) {
     <div className="max-w-2xl mx-auto p-6 animate-in slide-in-from-bottom-4 duration-500 pb-20">
       <Button 
         variant="ghost" 
-        onClick={onCancel} 
+        onClick={() => navigate('/dashboard')} 
         className="mb-6 pl-0 text-[var(--color-muted-foreground)] hover:text-[var(--color-dark-teal)] hover:bg-transparent"
       >
         <ArrowLeft className="mr-2 h-4 w-4" />
@@ -66,7 +65,7 @@ export function AssessmentForm({ onCancel, onSubmit }: AssessmentFormProps) {
             
             <div className="space-y-2">
               <Label htmlFor="gender">Пол</Label>
-              <Select onValueChange={(val) => setValue("gender", val)}>
+              <Select onValueChange={(val: string) => setValue("gender", val)}>
                 <SelectTrigger className="bg-white/50 h-12 focus:ring-[var(--color-deep-blue)]">
                   <SelectValue placeholder="Изберете пол" />
                 </SelectTrigger>
@@ -111,7 +110,7 @@ export function AssessmentForm({ onCancel, onSubmit }: AssessmentFormProps) {
 
           <div className="space-y-2">
             <Label htmlFor="mobility">Мобилност</Label>
-            <Select onValueChange={(val) => setValue("mobility", val)}>
+            <Select onValueChange={(val: string) => setValue("mobility", val)}>
               <SelectTrigger className="bg-white/50 h-12 focus:ring-[var(--color-deep-blue)]">
                 <SelectValue placeholder="Изберете ниво на мобилност" />
               </SelectTrigger>
@@ -133,7 +132,7 @@ export function AssessmentForm({ onCancel, onSubmit }: AssessmentFormProps) {
               defaultValue={[19]} 
               max={57} 
               step={1} 
-              onValueChange={(val) => setValue("casp", val[0])}
+              onValueChange={(val: number[]) => setValue("casp", val[0])}
               className="py-4"
             />
             <p className="text-xs text-[var(--color-muted-foreground)]">По-висок резултат = по-добро качество на живот</p>
@@ -159,7 +158,7 @@ export function AssessmentForm({ onCancel, onSubmit }: AssessmentFormProps) {
             
             <div className="space-y-2">
               <Label htmlFor="partner">Партньор в домакинството</Label>
-              <Select onValueChange={(val) => setValue("partner", val)}>
+              <Select onValueChange={(val: string) => setValue("partner", val)}>
                 <SelectTrigger className="bg-white/50 h-12 focus:ring-[var(--color-deep-blue)]">
                   <SelectValue placeholder="Да / Не" />
                 </SelectTrigger>
@@ -173,7 +172,7 @@ export function AssessmentForm({ onCancel, onSubmit }: AssessmentFormProps) {
 
           <div className="space-y-2">
             <Label htmlFor="income">Доход (субективна оценка)</Label>
-            <Select onValueChange={(val) => setValue("income", val)}>
+            <Select onValueChange={(val: string) => setValue("income", val)}>
               <SelectTrigger className="bg-white/50 h-12 focus:ring-[var(--color-deep-blue)]">
                 <SelectValue placeholder="Как оценява финансовото си състояние?" />
               </SelectTrigger>
@@ -197,7 +196,7 @@ export function AssessmentForm({ onCancel, onSubmit }: AssessmentFormProps) {
           <Button 
             type="button" 
             variant="outline" 
-            onClick={onCancel}
+            onClick={() => navigate('/dashboard')}
             className="flex-1 h-12 text-lg rounded-xl border-[var(--color-border)] text-[var(--color-dark-teal)]"
           >
             Отказ

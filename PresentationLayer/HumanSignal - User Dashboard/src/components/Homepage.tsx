@@ -1,12 +1,11 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { GlassCard } from '@/components/ui/GlassCard';
 import { LayoutGrid, Plus, Activity } from 'lucide-react';
 
-interface HomepageProps {
-  onNavigate: (screen: string) => void;
-}
+export function Homepage() {
+  const navigate = useNavigate();
 
-export function Homepage({ onNavigate }: HomepageProps) {
   return (
     <div className="min-h-[calc(100vh-8rem)] flex flex-col items-center justify-center p-6 space-y-12 animate-in fade-in duration-700">
       
@@ -23,7 +22,7 @@ export function Homepage({ onNavigate }: HomepageProps) {
         
         <GlassCard 
           className="group cursor-pointer hover:bg-white/60 dark:hover:bg-white/10 transition-all duration-300 border-t-4 border-t-[var(--color-deep-blue)] flex flex-col items-center text-center gap-6 p-10 hover:-translate-y-1"
-          onClick={() => onNavigate('dashboard')}
+          onClick={() => navigate('/dashboard')}
         >
           <div className="w-20 h-20 rounded-3xl bg-[var(--color-deep-blue)]/10 flex items-center justify-center text-[var(--color-deep-blue)] group-hover:scale-110 transition-transform duration-300">
             <LayoutGrid size={40} />
@@ -38,7 +37,7 @@ export function Homepage({ onNavigate }: HomepageProps) {
 
         <GlassCard 
           className="group cursor-pointer hover:bg-white/60 dark:hover:bg-white/10 transition-all duration-300 border-t-4 border-t-[var(--color-apricot)] flex flex-col items-center text-center gap-6 p-10 hover:-translate-y-1"
-          onClick={() => onNavigate('action-center')}
+          onClick={() => navigate('/action-center')}
         >
           <div className="w-20 h-20 rounded-3xl bg-[var(--color-apricot)]/10 flex items-center justify-center text-[var(--color-apricot)] group-hover:scale-110 transition-transform duration-300">
              <Activity size={40} />
@@ -53,7 +52,7 @@ export function Homepage({ onNavigate }: HomepageProps) {
 
         <GlassCard 
           className="group cursor-pointer hover:bg-white/60 dark:hover:bg-white/10 transition-all duration-300 border-t-4 border-t-[var(--color-warm-coral)] flex flex-col items-center text-center gap-6 p-10 hover:-translate-y-1"
-          onClick={() => onNavigate('new-assessment')}
+          onClick={() => navigate('/assessment/new')}
         >
           <div className="w-20 h-20 rounded-3xl bg-[var(--color-warm-coral)]/10 flex items-center justify-center text-[var(--color-warm-coral)] group-hover:scale-110 transition-transform duration-300">
             <Plus size={40} />
