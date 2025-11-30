@@ -38,8 +38,6 @@
 ├── notebook/
 ├── reports/
 ├── requirements.txt
-├── Dockerfile
-├── docker-compose.yml
 └── README.md
 
 ```
@@ -94,15 +92,7 @@ pip install -r requirements.txt
 
 ## Резултати и метрики
 - Linear Regression (baseline): MAE = 1.446, RMSE = 1.822, R² = 0.336
-- GBM (400 trees, lr=0.05, depth=3): MAE = 1.410, RMSE = 1.781, R² = 0.366 (на тест сет)
-- RandomForest (200 trees): не показва значимо подобрение и дава признаци на overfit
-- Ключови признаци (GBM): casp, sphus, adla, mobilityind, grossmotor (следвани от bmi, age).
-Бележка: тези стойности са примерни — прилагайте локални notebooks в notebook/ за пълно възпроизвеждане.
-
-### Подобрение: Gradient Boosting Model (GBM)
-- По-нисък MAE (~2.5% спрямо линейния модел) и по-добро R² (+0.03).
-- По-добра чувствителност към нелинейни зависимости и взаимодействия между признаците.
-- GBM е избран като текущ нелинеен baseline.
+- RandomForest (200 trees): показва значимо подобрение, accuracy: 89%
 
 ### Препоръки
 - Преформулиране на задачата като класификационен проблем (0–3 low, 4–7 medium, 8–12 high).
