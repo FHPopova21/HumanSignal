@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { GlassCard } from './ui/GlassCard';
-import { cases, Case, RiskLevel } from '../lib/mockData';
+import { Case, RiskLevel } from '../lib/mockData';
 import { RiskBadge } from './RiskBadge';
 import { Input } from './ui/input';
 import { Button } from './ui/button';
@@ -26,9 +26,10 @@ import { cn } from '../lib/utils';
 
 interface DashboardProps {
   onSelectCase: (caseId: string) => void;
+  cases: Case[];
 }
 
-export function Dashboard({ onSelectCase }: DashboardProps) {
+export function Dashboard({ onSelectCase, cases }: DashboardProps) {
   const [filterRisk, setFilterRisk] = useState<string>('All');
   const [searchQuery, setSearchQuery] = useState('');
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc');

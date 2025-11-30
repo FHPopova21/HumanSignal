@@ -45,10 +45,10 @@ function App() {
     // Mock calculation
     toast.success("Рискът е изчислен успешно!");
     
-    // Create mock new case
+    // Create mock new case using the provided name
     const newCase: Case = {
       id: `CASE-${Math.floor(Math.random() * 10000)}`,
-      name: "Нов Пациент", // In a real form we'd ask for name
+      name: data.name || "Нов Пациент",
       age: parseInt(data.age),
       risk: parseInt(data.age) > 80 ? 'High' : 'Medium', // Simple mock logic
       lastAssessmentDate: new Date().toISOString().split('T')[0],
@@ -68,7 +68,7 @@ function App() {
     handleNavigate('dashboard');
   };
 
-  const selectedCaseData = cases.find(c => c.id === selectedCaseId);
+  const selectedCaseData = allCases.find(c => c.id === selectedCaseId);
 
   return (
     <div className="min-h-screen bg-[var(--color-background)] font-sans text-[var(--color-dark-teal)] selection:bg-[var(--color-apricot)] selection:text-white transition-colors duration-300">
@@ -87,11 +87,12 @@ function App() {
         )}
 
         {activeScreen === 'dashboard' && (
-          <Dashboard onSelectCase={handleSelectCase} />
+          <Dashboard cases={allCases} onSelectCase={handleSelectCase} />
         )}
         
         {activeScreen === 'action-center' && (
           <ActionCenter 
+            cases={allCases}
             onNavigate={handleNavigate} 
             onSelectCase={handleSelectCase} 
           />

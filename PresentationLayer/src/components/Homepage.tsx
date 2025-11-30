@@ -165,7 +165,7 @@ export function Homepage({ onNavigate }: HomepageProps) {
               style={{ fontSize: 'clamp(2rem, 4vw, 3rem)' }}
               className="text-[#264653] mb-4"
             >
-              Защо InsightCare?
+              Защо HumanSignal?
             </h2>
             <p
               style={{ fontSize: '1.125rem' }}

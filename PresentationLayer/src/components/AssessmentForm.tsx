@@ -54,6 +54,17 @@ export function AssessmentForm({ onCancel, onSubmit }: AssessmentFormProps) {
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-2">
+              <Label htmlFor="name">Име на оценявания</Label>
+              <Input
+                id="name"
+                type="text"
+                placeholder="Име и фамилия"
+                {...register("name", { required: true })}
+                className="bg-white/50 h-12 focus-visible:ring-[var(--color-deep-blue)]"
+              />
+            </div>
+
+            <div className="space-y-2">
               <Label htmlFor="age">Възраст</Label>
               <Input 
                 id="age" 

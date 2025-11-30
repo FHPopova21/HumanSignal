@@ -2,17 +2,18 @@ import React from 'react';
 import { GlassCard } from './ui/GlassCard';
 import { Button } from './ui/button';
 import { RiskBadge } from './RiskBadge';
-import { cases } from '../lib/mockData';
+import { Case } from '../lib/mockData';
 import { Calendar, Phone, CheckCircle, ArrowRight, AlertTriangle, Clock, Plus } from 'lucide-react';
 import { cn } from '../lib/utils';
 
 interface ActionCenterProps {
   onNavigate: (screen: string) => void;
   onSelectCase: (caseId: string) => void;
+  cases: Case[];
 }
 
-export function ActionCenter({ onNavigate, onSelectCase }: ActionCenterProps) {
-  
+export function ActionCenter({ onNavigate, onSelectCase, cases }: ActionCenterProps) {
+
   const highRiskCases = cases.filter(c => c.risk === 'High');
 
   return (
